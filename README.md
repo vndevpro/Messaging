@@ -1,5 +1,5 @@
 # Messaging
-An option to store mail messages in SQL server and a console application send unsent messages. This will help to move sending logic out of main business task.
+Store messages in SQL database and a console application to send messages. This will help to move sending logic out of main business task. Message objects have ability to add additional fields.
 
 ## Scripts
 SqlServerScripts -> All scripts required for SQL Server
