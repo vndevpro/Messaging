@@ -3,8 +3,10 @@ create proc [dbo].[usp_GetByDynProperty]
 	@value nvarchar(max)
 as
 begin
-	select * from dbo.Messages
-	where MetadataXml.value('(/items/item/@key)[1]', 'varchar(max)') = @key
-			and MetadataXml.value('(/items/item/@value)[1]', 'varchar(max)') = @value
+	select m.*
+	from dbo.Messages m
+		cross apply m.MetadataXml.nodes('items/item') as x(i)
+	where x.i.value('(@key)[1]', 'varchar(max)') = @key
+	and x.i.value('(@value)[1]', 'nvarchar(max)') = @value
 end
 GO
